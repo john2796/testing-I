@@ -54,14 +54,14 @@ The following sections list information provided by the client about `items` and
 
 ### [x]Items.
 
-- Items have `name`, `type`, `durability` and `enhancement`. **Add any extra properties needed** to implement the client's requirements.
-- The item's `type` can be _weapon_ or _armor_.
-- The item's `enhancement` can be a number 0 through 20.
-- The maximum _durability_ of an item is 100.
-- The durability of an item starts at 100.
-- The enhancement level of an item starts at 0 and can reach a maximum of PEN.
-- The durability of an item cannot be less than 20 when the item's enhancement level is between +0 and +14.
-- The durability of an item cannot be less than 0 when the item's enhancement level is between +15 and TET.****
+-[x] Items have `name`, `type`, `durability` and `enhancement`. **Add any extra properties needed** to implement the client's requirements.
+-[x] The item's `type` can be _weapon_ or _armor_.
+-[x] The item's `enhancement` can be a number 0 through 20.
+-[x] The maximum _durability_ of an item is 100.
+-[x] The durability of an item starts at 100.
+-[x] The enhancement level of an item starts at 0 and can reach a maximum of PEN.
+-[x] The durability of an item cannot be less than 20 when the item's enhancement level is between +0 and +14.
+-[x] The durability of an item cannot be less than 0 when the item's enhancement level is between +15 and TET.****
 
 ### Enhancement
 
