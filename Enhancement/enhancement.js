@@ -1,7 +1,10 @@
 module.exports = {
   success,
-  success,
-  success
+  fail,
+  repair
 };
 
-function success() {}
+function repair(item) {}
+
+function success(item) {}
+function fail(item) {}

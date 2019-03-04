@@ -44,15 +44,15 @@ Follow these steps for completing your project.
 
 After a set of interviews with the potential users of the solution, we gathered the following information about the functionality of the game's enhancing system. Your job is to design and build an `enhancer` object that publishes the following methods:
 
-- a `success(item)` method that accepts an `item` object and returns a new `item` object modified according to the rules defined by the client for enhancement success.
-- a `fail(item)` method that accepts an `item` object and returns a new `item` object modified according to the rules defined by the client for enhancement failure.
-- a `repair(item)` method that accepts an `item` object and returns a new `item` with the durability restored to 100. This method is the simplest of the three and would be a **good starting point** on this project.
+-[x] a `success(item)` method that accepts an `item` object and returns a new `item` object modified according to the rules defined by the client for enhancement success.
+-[x] a `fail(item)` method that accepts an `item` object and returns a new `item` object modified according to the rules defined by the client for enhancement failure.
+-[x] a `repair(item)` method that accepts an `item` object and returns a new `item` with the durability restored to 100. This method is the simplest of the three and would be a **good starting point** on this project.
 
 Not all the information provided by our client is relevant to the design of the solution, but it's included to help understand how the enhancing system works.
 
 The following sections list information provided by the client about `items` and the game's enhancing system.
 
-### Items.
+### [x]Items.
 
 - Items have `name`, `type`, `durability` and `enhancement`. **Add any extra properties needed** to implement the client's requirements.
 - The item's `type` can be _weapon_ or _armor_.
