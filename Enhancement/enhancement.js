@@ -1,40 +1,21 @@
-const { displayName } = require("../Items/items");
-
 module.exports = {
-  success,
-  fail,
-  repair
+  fail
 };
 
-function repair(item) {
-  const newItem = {};
-  newItem.name = item.name;
-  newItem.type = item.type;
-  newItem.enhancement = item.enhancement;
-  newItem.durability = 100;
-
-  return newItem;
-}
-
 function fail(item) {
-  if (item.enhancement <= 14) {
-    return { ...item, enhancement: item.enhancement - 5 };
-  } else if (item.durability <= 14) {
-    return { ...item, durability: item.durability - 10 };
-  } else if (item.enhancement >= 16) {
-    item.name = item.name
-      .split("")
-      .splice(6)
-      .join("");
-
-    let name = `[${item.enhancement - 1}] ${item.name}`;
-    console.log(name);
-    return {
-      ...item,
-      enhancement: item.enhancement - 1,
-      name
-    };
+  // -[x] If the item's enhancement is 15 or higher, the item cannot be enhanced if the durability is below 10.
+  if (item.enhancement < 15 && item.durability < 25) {
+    return { ...item };
   }
-}
+  // -[x] The durability of the item is decreased by 5 if the item's `enhancement` is between 0 and 14.
+  // - The durability of the item is decreased by 10 if the item's `enhancement` is greater than 14.
+  // -
+  const durability =
+    item.enhancement < 15 ? item.durability - 5 : item.durability - 10;
+  // -[x] If the item's enhancement level is greater than 16 (DUO, TRI, TET), the enhancement level decreases by 1 (a DUO item would go back to PRI on failure).
+  // -[x] The name is updated to reflect the new enhancement level if it was decreased.
+  const enhancement =
+    item.enhancement > 16 ? item.enhancement - 1 : item.enhancement;
 
-function success(item) {}
+  return { ...item, durability, enhancement };
+}
