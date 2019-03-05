@@ -1,21 +1,77 @@
-module.exports = {
-  fail
-};
+/* eslint-disable max-len */
+/* eslint-disable spaced-comment */
+/* eslint-disable no-multiple-empty-lines */
 
+const enhanceLevels = {
+  1: '[+1]',
+  2: '[+2]',
+  3: '[+3]',
+  4: '[+4]',
+  5: '[+5]',
+  6: '[+6]',
+  7: '[+7]',
+  8: '[+8]',
+  9: '[+9]',
+  10: '[+10]',
+  11: '[+11]',
+  12: '[+12]',
+  13: '[+13]',
+  14: '[+14]',
+  15: '[+15]',
+  16: '[PRI]',
+  17: '[DUO]',
+  18: '[TRI]',
+  19: '[TET]',
+  20: '[PEN]',
+};
 function fail(item) {
-  // -[x] If the item's enhancement is 15 or higher, the item cannot be enhanced if the durability is below 10.
   if (item.enhancement < 15 && item.durability < 25) {
     return { ...item };
   }
-  // -[x] The durability of the item is decreased by 5 if the item's `enhancement` is between 0 and 14.
-  // - The durability of the item is decreased by 10 if the item's `enhancement` is greater than 14.
-  // -
-  const durability =
-    item.enhancement < 15 ? item.durability - 5 : item.durability - 10;
-  // -[x] If the item's enhancement level is greater than 16 (DUO, TRI, TET), the enhancement level decreases by 1 (a DUO item would go back to PRI on failure).
-  // -[x] The name is updated to reflect the new enhancement level if it was decreased.
-  const enhancement =
-    item.enhancement > 16 ? item.enhancement - 1 : item.enhancement;
+  const durability = item.enhancement < 15 ? item.durability - 5 : item.durability - 10;
+
+  const enhancement = item.enhancement > 16 ? item.enhancement - 1 : item.enhancement;
+
 
   return { ...item, durability, enhancement };
 }
+
+function repair(item) {
+  const newItem = Object.create(item);
+
+  newItem.durability = 100;
+  return { ...item };
+}
+
+function success(item) {
+  //`name`, `type`, `durability` and `enhancement
+  // -[x] The enhancement level of an item starts at 0.
+  // -[x] The maximum enhancement possible is PEN.
+  // -[] Enhancing an armor up to 5 cannot fail.
+  // -[] Enhancing a weapon up to 7 cannot fail.
+  // -[] Enhancement level is displayed as a strin g with a plus sign ( + ) before the number for levels 1 to 15.
+  // -[] Enhancement level of 0 is not displayed.
+  // -[] when an item is enhanced, the `name` should be modified to include the enhancement level between square brackets before the item's `name`. Example: the new name of a "Iron Sword" enhanced to 7 would be _"[+7] Iron Sword"_, at DUO would be _"[DUO] Iron Sword"_.
+  // -[] From +0 to +15 the enhancement is displayed using _Arabic Numerals_.
+  // -[] After +15 the display for the enhancing level follows the table below:
+
+  const enhancement = item.enhancement < 20 ? 20 : item.enhancement || 0;
+  const type = item.type ? 'weapon' : 'armor ';
+  const durability = item.durability > 100 ? 100 : item.durability;
+  const name = `${enhanceLevels[item.enhancement]} ${item.name}`;
+
+  return {
+    ...item,
+    name,
+    type,
+    durability,
+    enhancement,
+
+  };
+}
+
+module.exports = {
+  fail,
+  repair,
+  success,
+};

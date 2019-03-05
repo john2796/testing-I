@@ -65,15 +65,15 @@ The following sections list information provided by the client about `items` and
 
 ### Enhancement
 
-- The enhancement level of an item starts at 0.
-- The maximum enhancement possible is PEN.
-- Enhancing an armor up to 5 cannot fail.
-- Enhancing a weapon up to 7 cannot fail.
-- Enhancement level is displayed as a string with a plus sign ( + ) before the number for levels 1 to 15.
-- Enhancement level of 0 is not displayed.
-- when an item is enhanced, the `name` should be modified to include the enhancement level between square brackets before the item's `name`. Example: the new name of a "Iron Sword" enhanced to 7 would be _"[+7] Iron Sword"_, at DUO would be _"[DUO] Iron Sword"_.
-- From +0 to +15 the enhancement is displayed using _Arabic Numerals_.
-- After +15 the display for the enhancing level follows the table below:
+-[x] The enhancement level of an item starts at 0.
+-[x] The maximum enhancement possible is PEN.
+-[] Enhancing an armor up to 5 cannot fail.
+-[] Enhancing a weapon up to 7 cannot fail.
+-[] Enhancement level is displayed as a strin g with a plus sign ( + ) before the number for levels 1 to 15.
+-[] Enhancement level of 0 is not displayed.
+-[] when an item is enhanced, the `name` should be modified to include the enhancement level between square brackets before the item's `name`. Example: the new name of a "Iron Sword" enhanced to 7 would be _"[+7] Iron Sword"_, at DUO would be _"[DUO] Iron Sword"_.
+-[] From +0 to +15 the enhancement is displayed using _Arabic Numerals_.
+-[] After +15 the display for the enhancing level follows the table below:
 
 | Level | Display |
 | :---: | :-----: |
