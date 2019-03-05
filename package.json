@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jest": "^24.1.0"
+    "jest": "^24.1.0",
+    "start": "node"
   },
   "devDependencies": {
     "eslint": "^5.15.1",

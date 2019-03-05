@@ -37,36 +37,37 @@ function fail(item) {
 }
 
 function repair(item) {
-  const newItem = Object.create(item);
+  const durability = item.durability < 100 ? 100 : item.durability;
+  return { ...item, durability };
+}
 
-  newItem.durability = 100;
-  return { ...item };
+function dynamicLevels(obj, val) {
+  if (typeof val === 'number') {
+    const arr = Object.keys(obj);
+    return arr.map((num) => {
+      if (Number(num) === val) {
+        return obj[num];
+      }
+      return null;
+    });
+  }
+  return null;
 }
 
 function success(item) {
-  //`name`, `type`, `durability` and `enhancement
-  // -[x] The enhancement level of an item starts at 0.
-  // -[x] The maximum enhancement possible is PEN.
-  // -[] Enhancing an armor up to 5 cannot fail.
-  // -[] Enhancing a weapon up to 7 cannot fail.
-  // -[] Enhancement level is displayed as a strin g with a plus sign ( + ) before the number for levels 1 to 15.
-  // -[] Enhancement level of 0 is not displayed.
-  // -[] when an item is enhanced, the `name` should be modified to include the enhancement level between square brackets before the item's `name`. Example: the new name of a "Iron Sword" enhanced to 7 would be _"[+7] Iron Sword"_, at DUO would be _"[DUO] Iron Sword"_.
-  // -[] From +0 to +15 the enhancement is displayed using _Arabic Numerals_.
-  // -[] After +15 the display for the enhancing level follows the table below:
-
-  const enhancement = item.enhancement < 20 ? 20 : item.enhancement || 0;
+  let { enhancement } = item;
+  const enhance = enhancement < 0 ? enhancement += 1 : item.enhancement;
   const type = item.type ? 'weapon' : 'armor ';
-  const durability = item.durability > 100 ? 100 : item.durability;
-  const name = `${enhanceLevels[item.enhancement]} ${item.name}`;
-
+  const durability = item.durability > 100 || item.durability < 0
+    ? 100
+    : item.durability;
+  const name = `${dynamicLevels(enhanceLevels, enhancement)} ${item.name}`;
   return {
     ...item,
     name,
     type,
     durability,
-    enhancement,
-
+    enhancement: enhance,
   };
 }
 
@@ -75,3 +76,4 @@ module.exports = {
   repair,
   success,
 };
+

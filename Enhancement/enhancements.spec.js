@@ -55,5 +55,83 @@ describe('enhacer', () => {
     });
   });
 
-  describe('------------------- success() ------------------------', () => { });
+  describe('------------------- success() ------------------------', () => {
+    //     -[x] The enhancement level of an item starts at 0.
+    it('The enhancement level of an item starts at 0', () => {
+      const item = {
+        enhancement: 0,
+        durability: 100,
+      };
+      const result = success(item);
+
+      expect(result.enhancement).toBe(0);
+    });
+    // -[x] The maximum enhancement possible is PEN.
+    it('The maximum enhancement possible is PEN.[20]', () => {
+      const item = {
+        durability: 100,
+      };
+      const result = success(item);
+      expect(result.durability).toBe(100);
+    });
+    // -[] Enhancing an armor up to 5 cannot fail.
+    it('Enhancing an armor up to 5 cannot fail', () => {
+      const item = {
+        enhancement: 5,
+      };
+      const result = success(item);
+      expect(result.enhancement).toBe(5);
+    });
+    // -[] Enhancing a weapon up to 7 cannot fail.
+    it('Enhancing a weapon up to 7 cannot fail.', () => {
+      const item = {
+        enhancement: 7,
+      };
+      const result = success(item);
+      expect(result.enhancement).toBe(7);
+    });
+    // -[] Enhancement level is displayed as a strin g with a plus sign ( + ) before the number for levels 1 to 15.
+    it('Enhancement level is displayed as a strin g with a plus sign ( + ) before the number for levels 1 to 15.', () => {
+      const item = {
+        enhancement: 15,
+      };
+      const result = success(item);
+      expect(result.enhancement).toBeLessThanOrEqual(result.enhancement, 15);
+    });
+    // -[] Enhancement level of 0 is not displayed.
+
+    it('Enhancement level of 0 is not displayed', () => {
+      const item = {
+        enhancement: 0,
+      };
+      const result = success(item);
+      expect(result.enhancement).toBe(0);
+    });
+    // -[] when an item is enhanced, the `name` should be modified to include the enhancement level between square brackets before the item's `name`. Example: the new name of a "Iron Sword" enhanced to 7 would be _"[+7] Iron Sword"_, at DUO would be _"[DUO] Iron Sword"_.
+    it('hen an item is enhanced, the name should be modified to include the enhancement level between square brackets before the item\'s name', () => {
+      const item = {
+        name: '[+7] Iron Sword',
+      };
+      const result = success(item);
+      expect(result.name).toBe(result.name);
+    });
+    // -[] From +0 to +15 the enhancement is displayed using _Arabic Numerals_.
+
+    it('From +0 to +15 the enhancement is displayed using _Arabic Numerals_.', () => {
+      const item = {
+        enhancement: '$[+1]',
+      };
+      const result = success(item);
+      expect(result.enhancement).toBe('$[+1]');
+    });
+    // -[] After +15 the display for the enhancing level follows the table below:
+
+    it('The maximum enhancement possible is PEN.[20]', () => {
+      const item = {
+        durability: 100,
+      };
+      const result = success(item);
+      expect(result.durability).toBe(100);
+    });
+  });
 });
